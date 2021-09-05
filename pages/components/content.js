@@ -47,7 +47,7 @@ export default function content(props) {
       	<br/>
       	<p> Launching In:</p>
       	<div className={styles.time_wrap}>
-	    	<Countdown  date={1630951200000} renderer={renderer}/>
+	    	<Countdown  date={1631037600000} renderer={renderer}/>
 	    </div>
 	    </Fade>
       </div>:''}
