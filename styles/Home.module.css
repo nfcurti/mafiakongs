@@ -300,6 +300,37 @@ height: 2em;
   padding: 1em;
   margin: 0 auto
 }
+.connect_but{
+    background-image: url('../public/button1.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    height: 120px;
+    padding: 1em 3em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    padding-top: 30px;
+    font-size: 0.8em;
+    width: 93%;
+}
+
+.connect_h1{
+  text-align: center
+}
+
+.connect_but img{
+    display: block;
+    width: 40px;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1.00px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.connect_but:hover{
+  -webkit-text-fill-color: rgba(255,255,255,0.6);
+  cursor: pointer
+}
 
 .button_box:hover{
   filter: brightness(80%);
@@ -374,7 +405,7 @@ height: 2em;
   width: 75%;
   margin:auto;
   background-image: url('../public/divred.svg');
-  background-size: contain;
+    background-size: 100% 100%;
   background-repeat: no-repeat;
   text-align: center;
   color: white;
