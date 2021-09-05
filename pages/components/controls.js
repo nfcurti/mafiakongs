@@ -27,6 +27,7 @@ export default function controls() {
 		    	<div className={styles.button_box}>5x</div>
 		    	<div className={styles.button_box}>10x</div>
 	    	</div>
+	    	
 		    <div className={styles.button_box_send}>Mint</div>
 	    </div>
 
