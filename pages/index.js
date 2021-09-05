@@ -72,7 +72,7 @@ export default function Home() {
             <li onClick={() => {setTab(3)}} className={styles.nav_item}><a >Rewards</a>
               <div className={styles.Frame}></div>
             </li>
-            <li onClick={() => {setTab(4)}} className={styles.nav_item}><a href='https://twitter.com/MafiaKongs'>Twitter</a>
+            <li className={styles.nav_item}><a href='https://twitter.com/MafiaKongs'>Twitter</a>
               <div className={styles.Frame}></div>
             </li>
             <li onClick={openModal} className={styles.connect}>{userAddress}
