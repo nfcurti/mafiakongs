@@ -362,6 +362,19 @@ height: 2em;
 
 }
 
+.time_left_cs{
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0;
+  font-family: Super Mario;
+  letter-spacing: 4px;
+  margin-top: 3em;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1.00px; 
+
+}
+
 .final_time{
   color: white;
   font-size: 14px;

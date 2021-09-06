@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Content from './components/content'
-import Controls from './components/controls'
 import logoPic from '../public/logo-with-text.jpeg'
 import { Fade } from "react-awesome-reveal";
 import ContractData from '../config/Contract.json';
 import React, {useRef,  useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import Countdown from 'react-countdown'
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0,0,0,0.4)';
 import WalletConnectProvider from "@walletconnect/web3-provider";
 const Web3 = require('web3');
@@ -38,7 +37,17 @@ export default function Home() {
     const [tab, setTab] = useState(1)
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const Completionist = () => <span className='countdown'>Minting is live!</span>
+
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+      if (completed) {
+        return <Completionist />
+      } else {
+        return <span className={styles.countdown}>{days} DAYS {hours} HRS {minutes} MIN {seconds} SEC</span>
+      }
+    }
     function openModal() {
       setModalOpen(true);
     }
@@ -50,8 +59,8 @@ export default function Home() {
       setModalOpen(false);
     }
 
-  const _chainIdToCompare = 4 //Ethereum
-  // const _chainIdToCompare = 4; //Rinkeby
+  //const _chainIdToCompare = 1; //Ethereum
+   const _chainIdToCompare = 4; //Rinkeby
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
@@ -74,6 +83,8 @@ export default function Home() {
   const [mintValue, setMintValue] = useState(1);
 
 
+  const [freemintStartDate, setFreemintStartDate] = useState(new Date());
+  const [freemintStopDate, setFreemintStopDate] = useState(new Date());
   const [mintForAllStartDate, setMintForAllStartDate] = useState(new Date());
 
   const [freeAvailableMints, setFreeAvailableMints] = useState(0);
@@ -86,6 +97,8 @@ export default function Home() {
     const contract = new web3.eth.Contract(ContractData.abi, ContractData.address);
 
 
+
+      const mintForAllStartDate = await contract.methods._startDate().call();
       var _date = new Date(0)
       _date.setUTCSeconds(mintForAllStartDate);
       setMintForAllStartDate(_date);
@@ -103,6 +116,8 @@ export default function Home() {
     if (provider && userAddress!='') {
       const web3 = new Web3(provider);
       const contract = new web3.eth.Contract(ContractData.abi, ContractData.address);
+      const _freeAvailableMints = await contract.methods.getFreeMintableCount(userAddress).call();
+      setFreeAvailableMints(_freeAvailableMints);
     }
     
   }
@@ -365,7 +380,7 @@ export default function Home() {
               <div className={styles.Frame}></div>
             </li>
             <li onClick={openModal} className={styles.connect}>{
-              userAddress=='CONNECT' ? userAddress:`${userAddress.slice(0,3)}...${userAddress.slice(-3)}`}
+              userAddress=='Connect' ? userAddress:`${userAddress.slice(0,3)}...${userAddress.slice(-3)}`}
             </li>
           </ul>
           <Fade>
@@ -393,7 +408,120 @@ export default function Home() {
         </div>
 
         <Fade style={{marginTop:'10%'}}>
-          <Content tab={tab}/>
+          <div className={styles.content_container}>
+     
+      {tab == 1 ? <div className={styles.blue_box}>
+        <Fade>
+        <h1>
+          <span style={{color:'#049CD8'}}>M</span>
+          <span style={{color:'#FBD000'}}>a</span>
+          <span style={{color:'#E52521'}}>f</span>
+          <span style={{color:'#43B047'}}>i</span>
+          <span style={{color:'#FBD000'}}>a</span>
+          <span style={{color:'#E52521'}}>K</span>
+          <span style={{color:'#43B047'}}>o</span>
+          <span style={{color:'#FBD000'}}>n</span>
+          <span style={{color:'#049CD8'}}>g</span>
+          <span style={{color:'#43B047'}}>s</span>
+        </h1>
+        <p>MafiaKongs is a collection of 5,000 randomly generated Mafia Kong NFTs on the ETH blockchain. They are well known to wander around the Crypto Jungle in search of Banana Serum.</p>
+        <br/>
+        <p> Launching In:</p>
+        <div className={styles.time_wrap}>
+        <Countdown  date={1631037600000} renderer={renderer}/>
+      </div>
+      </Fade>
+      </div>:''}
+      {tab == 2 ? <div className={styles.blue_box}>
+        <Fade>
+        <h1>
+          <span style={{color:'#049CD8'}}>R</span>
+          <span style={{color:'#FBD000'}}>O</span>
+          <span style={{color:'#E52521'}}>A</span>
+          <span style={{color:'#43B047'}}>D</span>
+          <span style={{color:'#FBD000'}}>M</span>
+          <span style={{color:'#E52521'}}>A</span>
+          <span style={{color:'#43B047'}}>P</span>
+        </h1>
+        <Fade delay={300}>
+        <div className={styles.roadmap_item}>
+          <img src='Frame (2).svg'/>
+          <p>1/1 LEGENDARY KONGS GIVEAWAY </p>
+        </div>
+        </Fade>
+        <Fade delay={500}>
+        <div className={styles.roadmap_item}>
+          <img src='Frame (3).svg'/>
+          <p>BANANA SERUM AIRDROP (CURRENT HOLDERS)</p>
+        </div>
+        </Fade>
+        <Fade delay={700}>
+        <div className={styles.roadmap_item}>
+          <img src='Frame (4).svg'/>
+          <p>4ETH DONATION TO GorillaFund NGO</p>
+        </div>
+        </Fade>
+        <Fade delay={1000}>
+        <div className={styles.roadmap_item}>
+          <img src='Frame (5).svg'/>
+          <p>TREASURY SPLIT BETWEEN SERUM HOLDERS  SECRET COMMUNITY REWARD</p>
+        </div>
+        </Fade>
+        </Fade>
+      </div>:''}
+      {tab == 3 ? <div className={styles.blue_box}>
+        <Fade>
+        <h1>
+          <span style={{color:'#049CD8'}}>R</span>
+          <span style={{color:'#FBD000'}}>E</span>
+          <span style={{color:'#E52521'}}>W</span>
+          <span style={{color:'#43B047'}}>A</span>
+          <span style={{color:'#FBD000'}}>R</span>
+          <span style={{color:'#E52521'}}>D</span>
+          <span style={{color:'#43B047'}}>S</span>
+        </h1>
+        <img className={styles.banana} src='banana.svg' />
+        <p className={styles.banana_text}>Banana Serum</p>
+        <p className={styles.banana_text}>Get 1 Banana Serum a month per Kong held</p>
+        <p className={styles.banana_text}>Ocasionally giveaways will drop them </p>
+        <p className={styles.banana_text}>1x Banana Serum for each under 50% mint </p>
+        <br/>
+        <p className={styles.banana_text}>
+        <div className={styles.banana_text_xp}><span style={{color:'#FBD000'}}>Every month</span>, <span style={{color:'#E52521'}}>treasury</span> <span style={{color:'#049CD8'}}>will be</span> <span style={{color:'#43B047'}}>distributed</span> <span style={{color:'#FBD000'}}>to <span style={{color:'#E52521'}}>serum</span> holders </span></div>
+        </p>
+        <p className={styles.banana_text}>Treasury = 5% of primary and secondary sales</p>
+        </Fade>
+      </div>:''}
+      <div className={styles.box_wrapper}>
+
+      <div className={styles.control_big_box}>
+        <div className={styles.div_wrapper}>Mint Status: Unavailable</div>
+        <div className={styles.div_wrapper}>Mint Price: 0.05 Ξ</div>
+        <div className={styles.div_wrapper}>Amount: {maxStock} Kongs</div>
+      </div>
+      <div className={styles.control_small_box}>
+        <p className={styles.bet_p}>Available to Mint:</p>
+        <div className={styles.div_wrapper}>
+          <span className={styles.div_wrapper_input}>{remainingCats} Kongs</span>
+        </div>
+      </div>
+      {(Date.now() >= mintForAllStartDate) ?
+            <div className={styles.control_big_box}>
+              <p className={styles.time_left}>Mint</p>
+              <div className={styles.button_wrapper}>
+                <div onClick={() => {setMintValue(1)}} className={styles.button_box}>1x</div>
+                <div onClick={() => {setMintValue(5)}} className={styles.button_box}>5x</div>
+                <div onClick={() => {setMintValue(10)}} className={styles.button_box}>10x</div>
+              </div>
+              <div onClick={() => {mint()}} className={styles.button_box_send}>Mint {mintValue}</div>
+            </div> : <div className={styles.control_big_box}>
+              <p className={styles.time_left}>Mint</p>
+              <p className={styles.time_left_cs}>COMING SOON</p>
+              
+            </div>}
+
+    </div>  
+    </div>
 
         </Fade>
       </main>
