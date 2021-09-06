@@ -26,6 +26,7 @@ export default function content(props) {
   }
 
 
+
   return (
     <div className={styles.content_container}>
      

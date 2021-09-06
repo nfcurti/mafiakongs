@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
+    "@walletconnect/web3-provider": "^1.6.5",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-awesome-reveal": "^3.8.1",
     "react-countdown": "^2.3.2",
     "react-dom": "17.0.2",
-    "react-modal": "^3.14.3"
+    "react-modal": "^3.14.3",
+    "web3": "^1.5.2"
   },
   "devDependencies": {
     "eslint": "7.29.0",
