@@ -59,8 +59,7 @@ export default function Home() {
       setModalOpen(false);
     }
 
-  //const _chainIdToCompare = 1; //Ethereum
-   const _chainIdToCompare = 4; //Rinkeby
+   const _chainIdToCompare = 1; 
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
